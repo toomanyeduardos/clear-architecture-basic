@@ -57,7 +57,7 @@ public class Database implements DatabaseInterface {
                 JSONObject rectangleObject = rectanglesArray.getJSONObject(i);
 
                 rectangle.height = rectangleObject.getDouble("h");
-                rectangle.length = rectangleObject.getDouble("w");
+                rectangle.width = rectangleObject.getDouble("w");
 
                 rectangleList.add(rectangle);
             }

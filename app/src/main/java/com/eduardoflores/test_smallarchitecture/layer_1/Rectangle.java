@@ -8,7 +8,7 @@ package com.eduardoflores.test_smallarchitecture.layer_1;
 
 public class Rectangle {
 
-    public double length;
+    public double width;
 
     public double height;
 }

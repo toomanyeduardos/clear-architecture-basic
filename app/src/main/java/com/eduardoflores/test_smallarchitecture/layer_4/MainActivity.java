@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         String outputText = "";
         List<Rectangle> rectangleList = useCase.getListRectangles(this, "rectangles-data.json");
         for (Rectangle rectangle : rectangleList) {
-            outputText = outputText + useCase.getRectangleArea(rectangle.length, rectangle.height) + "\n";
+            outputText = outputText + useCase.getRectangleArea(rectangle.width, rectangle.height) + "\n";
         }
         areaTV.setText("\n\n\nArea: \n" + outputText);
     }

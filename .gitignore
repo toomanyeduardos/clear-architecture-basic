@@ -35,3 +35,7 @@ gen-external-apklibs
 
 ### Java ###
 *.class
+
+### Android Studio ###
+/.idea/workspace.xml
+/.idea/libraries

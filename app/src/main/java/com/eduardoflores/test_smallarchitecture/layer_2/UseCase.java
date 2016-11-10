@@ -1,14 +1,9 @@
 package com.eduardoflores.test_smallarchitecture.layer_2;
 
-import android.content.Context;
-
 import com.eduardoflores.test_smallarchitecture.interface_1_2.GeometryInterface;
 import com.eduardoflores.test_smallarchitecture.interface_2_3.DatabaseAdapterInterface;
-import com.eduardoflores.test_smallarchitecture.interface_3_4.DatabaseInterface;
 import com.eduardoflores.test_smallarchitecture.layer_1.Rectangle;
 import com.eduardoflores.test_smallarchitecture.layer_1.RectangleGeometry;
-import com.eduardoflores.test_smallarchitecture.layer_3.DatabaseAdapter;
-import com.eduardoflores.test_smallarchitecture.layer_4.Database;
 
 import java.util.List;
 
@@ -17,6 +12,12 @@ import java.util.List;
  */
 
 public class UseCase {
+
+    private DatabaseAdapterInterface databaseAdapter;
+
+    public UseCase(DatabaseAdapterInterface databaseAdapter) {
+        this.databaseAdapter = databaseAdapter;
+    }
 
     public double getRectangleArea(double w, double h) {
         GeometryInterface geometryInterface = new RectangleGeometry();
@@ -31,8 +32,7 @@ public class UseCase {
         return Math.abs(h);
     }
 
-    public List<Rectangle> getListRectangles(Context context, String databaseName) {
-        DatabaseAdapterInterface databaseAdapterInterface = new DatabaseAdapter(context);
-        return databaseAdapterInterface.getListRectangles(databaseName);
+    public List<Rectangle> getListRectangles() {
+        return databaseAdapter.getListRectangles();
     }
 }

@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface DatabaseAdapterInterface {
 
-    List<Rectangle> getListRectangles(String databaseName);
+    List<Rectangle> getListRectangles();
 }

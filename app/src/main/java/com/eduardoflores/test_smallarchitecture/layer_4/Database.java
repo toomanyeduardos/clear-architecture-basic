@@ -15,10 +15,16 @@ public class Database implements DatabaseInterface {
 
     private Context context;
 
+    private String databaseName;
+
     @Override
-    public String getDatabaseContent(Context context, String databaseName) {
-        this.context = context;
+    public String getDatabaseContent() {
         return getDatabaseAsString(databaseName);
+    }
+
+    public Database(Context context, String databaseName) {
+        this.context = context;
+        this.databaseName = databaseName;
     }
 
     private String getDatabaseAsString(String databaseName) {

@@ -1,11 +1,9 @@
 package com.eduardoflores.test_smallarchitecture.layer_3;
 
-import android.content.Context;
-
 import com.eduardoflores.test_smallarchitecture.interface_2_3.DatabaseAdapterInterface;
+import com.eduardoflores.test_smallarchitecture.ServiceLocator;
 import com.eduardoflores.test_smallarchitecture.interface_3_4.DatabaseInterface;
 import com.eduardoflores.test_smallarchitecture.layer_1.Rectangle;
-import com.eduardoflores.test_smallarchitecture.layer_4.Database;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,16 +18,16 @@ import java.util.List;
 
 public class DatabaseAdapter implements DatabaseAdapterInterface {
 
-    private Context context;
+    DatabaseInterface databaseInterface;
 
-    public DatabaseAdapter(Context context) {
-        this.context = context;
+    public DatabaseAdapter(DatabaseInterface databaseInterface) {
+        this.databaseInterface = databaseInterface;
     }
 
     @Override
-    public List<Rectangle> getListRectangles(String databaseName) {
-        DatabaseInterface databaseInterface = new Database();
-        String databaseContent = databaseInterface.getDatabaseContent(context, databaseName);
+    public List<Rectangle> getListRectangles() {
+        databaseInterface = ServiceLocator.getInstance().getDatabase();
+        String databaseContent = databaseInterface.getDatabaseContent();
 
         List<Rectangle> rectangleList = new ArrayList<>();
         try {

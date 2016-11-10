@@ -1,4 +1,4 @@
-package com.eduardoflores.test_smallarchitecture.inter_1_2;
+package com.eduardoflores.test_smallarchitecture.interface_1_2;
 
 /**
  * Created by eflores on 11/8/16.

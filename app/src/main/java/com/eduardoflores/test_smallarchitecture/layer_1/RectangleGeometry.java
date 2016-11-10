@@ -1,6 +1,6 @@
 package com.eduardoflores.test_smallarchitecture.layer_1;
 
-import com.eduardoflores.test_smallarchitecture.inter_1_2.GeometryInterface;
+import com.eduardoflores.test_smallarchitecture.interface_1_2.GeometryInterface;
 
 /**
  * Created by eflores on 11/8/16.

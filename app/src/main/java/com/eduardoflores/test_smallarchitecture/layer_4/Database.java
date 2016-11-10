@@ -2,17 +2,10 @@ package com.eduardoflores.test_smallarchitecture.layer_4;
 
 import android.content.Context;
 
-import com.eduardoflores.test_smallarchitecture.inter_3_4.DatabaseInterface;
-import com.eduardoflores.test_smallarchitecture.layer_1.Rectangle;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.eduardoflores.test_smallarchitecture.interface_3_4.DatabaseInterface;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by eflores on 11/8/16.
@@ -23,11 +16,9 @@ public class Database implements DatabaseInterface {
     private Context context;
 
     @Override
-    public List<Rectangle> getListRectangles(Context context, String databaseName) {
+    public String getDatabaseContent(Context context, String databaseName) {
         this.context = context;
-
-        String databaseContent = getDatabaseAsString(databaseName);
-        return parseDatabaseContent(databaseContent);
+        return getDatabaseAsString(databaseName);
     }
 
     private String getDatabaseAsString(String databaseName) {
@@ -45,26 +36,5 @@ public class Database implements DatabaseInterface {
         }
 
         return content;
-    }
-
-    private List<Rectangle> parseDatabaseContent(String databaseContent) {
-        List<Rectangle> rectangleList = new ArrayList<>();
-        try {
-            JSONObject rootObject = new JSONObject(databaseContent);
-            JSONArray rectanglesArray = rootObject.getJSONArray("rectangles");
-            for (int i = 0; i < rectanglesArray.length(); i++) {
-                Rectangle rectangle = new Rectangle();
-                JSONObject rectangleObject = rectanglesArray.getJSONObject(i);
-
-                rectangle.height = rectangleObject.getDouble("h");
-                rectangle.width = rectangleObject.getDouble("w");
-
-                rectangleList.add(rectangle);
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return rectangleList;
     }
 }

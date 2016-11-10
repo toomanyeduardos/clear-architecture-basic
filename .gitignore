@@ -39,3 +39,5 @@ gen-external-apklibs
 ### Android Studio ###
 /.idea/workspace.xml
 /.idea/libraries
+/.idea
+/.idea/misc.xml

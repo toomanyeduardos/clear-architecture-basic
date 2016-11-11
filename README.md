@@ -1,4 +1,4 @@
-# clear-architecture-basic
+# About this project...
 
 This is a generic repo to help me understand Uncle Bob's version of clean architecture.
 This repo should be generic, without any work related elements (from any company).
@@ -18,5 +18,8 @@ We then have another java class that converts the POJO read from the database, a
 POJOs for the app to display.
 The POJOs in the app should be simple and without logic. Another class should have logic, like data validation.
 The UI (activity) and database (or persistance in general) should not communicate directly with each other.
+
+# Data flow - Last update: Nov 10 2016
+- The application has a `MyApplication` class, which holds a singleton for the class `ServiceLocator`
 
 Eduardo.

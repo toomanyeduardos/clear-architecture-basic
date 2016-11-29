@@ -25,6 +25,9 @@ The UI (activity) and database (or persistance in general) should not communicat
 Dependency must only be inwards the ring (so Layer 3 can know about Layer 2, but Layers 1 and 2 do not know
 about Layers 3 or 4).
 
+Visual image of the rings (from Uncle Bob):
+![alt tag](https://8thlight.com/blog/assets/posts/2012-08-13-the-clean-architecture/CleanArchitecture-8b00a9d7e2543fa9ca76b81b05066629.jpg)
+
 Ideally this project will not have libraries that obscure behavior, like Dagger, Otto or RxJava.
 
 # Data flow - Last update: Nov 10 2016

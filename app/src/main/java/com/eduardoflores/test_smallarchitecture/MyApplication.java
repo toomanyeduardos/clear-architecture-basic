@@ -8,13 +8,13 @@ import android.app.Application;
 
 public class MyApplication extends Application {
 
-    private static ServiceLocator componentProvider;
+    private static ServiceLocator serviceLocator;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        componentProvider = new ServiceLocator(this, "rectangles-data.json");
+        serviceLocator = new ServiceLocator(this, "rectangles-data.json");
     }
 
     @Override

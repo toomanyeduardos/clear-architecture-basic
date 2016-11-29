@@ -36,7 +36,7 @@ Ideally this project will not have libraries that obscure behavior, like Dagger,
 
 `MyApplication` and `ServiceLocator` are special factory classes, and we currently believe they do not fit inside
 any specific layer. We think these classes can be used in any layer at any time, therefore they don't fit anywhere. We
-may be wrong though, but this is a concept from the Service Locator Pattern.
+may be wrong though, but this is a concept from the [Service](https://msdn.microsoft.com/en-us/library/ff648968.aspx) [Locator](http://www.oracle.com/technetwork/java/servicelocator-137181.html) [Pattern.](https://en.wikipedia.org/wiki/Service_locator_pattern)
 The `ServiceLocator` is also intended to help us create manual dependency injection.
 
 - The `MainActivity` (Layer 4) calls the `ServiceLocator` to setup the `MainActivity`'s configuration. This will then

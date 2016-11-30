@@ -54,7 +54,8 @@ using the `configureMainActivity()` method.
 can call `useCase.getListRectangles()`, from the `UseCase` class.
 - The `MainActivity` (Layer 4) calls the `UseCase.getListRectangles()` method (Layer 2) directly and without an interface. We're still debating if this breaks any rule.
 - The `UseCase` class (Layer 2) calls the `DatabaseAdapterInterface` interface (between Layers 2 and 3) to get the `getListRectangles()` method from whatever class that implements
-the `DatabaseAdapterInterface`. *This is key because we want this task of `getListRectangles()` to be performed by an adapter in Layer 3, but Layer 2 cannot know about elements in Layer 3.*
+the `DatabaseAdapterInterface`.
+**This is key because we want this task of `getListRectangles()` to be performed by an adapter in Layer 3, but Layer 2 cannot know about elements in Layer 3.**
 - The `DatabaseAdapterInterface` interface (between Layers 2 and 3) is implemented by `DatabaseAdapter` (Layer 3). In here the `DatabaseAdapter` overrides the `getListRectangles()` method that came
 from the `DatabaseAdapterInterface` interface and returns a list of `Rectangle` POJOs.
 - Since each method returns a `List<Rectangle>`, the `MainActivity` receives that List, from the initial call it made to the `UseCase`.

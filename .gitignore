@@ -41,3 +41,5 @@ gen-external-apklibs
 /.idea/libraries
 /.idea
 /.idea/misc.xml
+app/app.iml
+/app/app.iml

@@ -11,6 +11,8 @@ import com.eduardoflores.test_smallarchitecture.layer_2.UseCase;
 
 public class TestLayer2 extends ApplicationTestCase<Application> {
 
+    UseCase useCase;
+
     // mandatory constructor
     public TestLayer2() {
         super(Application.class);
@@ -19,11 +21,11 @@ public class TestLayer2 extends ApplicationTestCase<Application> {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+        useCase = new UseCase(null);
     }
 
     // Test UseCase class
     public void testGetRectangleArea() {
-        final UseCase useCase = new UseCase(null);
         final double area = useCase.getRectangleArea(4, 3);
         assertEquals(area, 12.0);
     }

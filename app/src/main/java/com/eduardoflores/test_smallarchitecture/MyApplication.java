@@ -8,7 +8,7 @@ import android.app.Application;
 
 public class MyApplication extends Application {
 
-    private static ServiceLocator serviceLocator;
+    private ServiceLocator serviceLocator;
 
     @Override
     public void onCreate() {

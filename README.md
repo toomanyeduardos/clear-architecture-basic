@@ -30,7 +30,7 @@ Visual image of the rings ([from Uncle Bob](https://8thlight.com/blog/uncle-bob/
 
 Ideally this project will not have libraries that obscure behavior, like Dagger, Otto or RxJava.
 
-# Data flow - Last update: Nov 10 2016
+# Data flow - Last update: Nov 29 2016
 - The application has a `MyApplication` class, which holds a singleton for the class `ServiceLocator`
 - The `ServiceLocation` acts as the factory class for elements in Layer 4. For now this is database and activities.
 
@@ -39,13 +39,26 @@ any specific layer. We think these classes can be used in any layer at any time,
 may be wrong though, but this is a concept from the [Service](https://msdn.microsoft.com/en-us/library/ff648968.aspx) [Locator](http://www.oracle.com/technetwork/java/servicelocator-137181.html) [Pattern.](https://en.wikipedia.org/wiki/Service_locator_pattern)
 The `ServiceLocator` is also intended to help us create manual dependency injection.
 
-- The `MainActivity` (Layer 4) calls the `ServiceLocator` to setup the `MainActivity`'s configuration. This will then
-create a UseCase object, with a `DatabaseAdapter` (Layer 3)
-- The `UseCase` (Layer 2) calls the `DatabaseAdapter` (Layer 3) through the `DatabaseAdapterInterface` (between layers 2 and 3)
-to get a `List<Rectangle>`
-- The `DatabaseAdapter` (Layer 3) calls the `ServiceLocator` to get a `Database` object (Layer 4) and return a String with
-the contents of the `Database`
-- The `DatabaseAdapter` the converts the returned `String` into a `List<Rectangle>` and the data returns back up through their
-calling interfaces.
+Initial setup:
+- The app starts, and calls `MyApplication.java`
+- `MyApplication` creates a new `ServiceLocator` object with the String name of the database
+- The `ServiceLocator` object gets the database name, and sets up the elements for the `ServiceLocator` class
+to be invoced as a singleton object.
+- The `ServiceLocator` class also has a `configureMainActivity()` method with the purpose of setting up the `UseCase` class from the `MainActivity`.
+Currently, this is the end of the setup. The rest should begin its lifecycle from the `MainActivity` class.
+
+MainActivity:
+- When the `MainActivity` class calls its `onCreate()`` method, it gets the singleton reference of `ServiceLocator`, and tells it to setup the `MainActivity`,
+using the `configureMainActivity()` method.
+- Thanks to the `ServiceLocator`, the `UseCase` object inside the `MainActivity` has already been initialized, so now the `MainActivity` class
+can call `useCase.getListRectangles()`, from the `UseCase` class.
+- The `MainActivity` (Layer 4) calls the `UseCase.getListRectangles()` method (Layer 2) directly and without an interface. We're still debating if this breaks any rule.
+- The `UseCase` class (Layer 2) calls the `DatabaseAdapterInterface` interface (between Layers 2 and 3) to get the `getListRectangles()` method from whatever class that implements
+the `DatabaseAdapterInterface`. *This is key because we want this task of `getListRectangles()` to be performed by an adapter in Layer 3, but Layer 2 cannot know about elements in Layer 3.*
+- The `DatabaseAdapterInterface` interface (between Layers 2 and 3) is implemented by `DatabaseAdapter` (Layer 3). In here the `DatabaseAdapter` overrides the `getListRectangles()` method that came
+from the `DatabaseAdapterInterface` interface and returns a list of `Rectangle` POJOs.
+- Since each method returns a `List<Rectangle>`, the `MainActivity` receives that List, from the initial call it made to the `UseCase`.
+
+
 
 Eduardo.
